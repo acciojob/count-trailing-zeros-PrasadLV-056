@@ -4,110 +4,50 @@
   <meta charset="UTF-8">
   <title>Trailing Zeros in Factorial</title>
   <style>
-    * {
-      box-sizing: border-box;
-    }
-
     body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: linear-gradient(135deg, #f0f0f0, #dfe6e9);
-      margin: 0;
-      padding: 0;
+      font-family: Arial, sans-serif;
+      background: #f3f4f6;
       display: flex;
-      justify-content: center;
+      flex-direction: column;
       align-items: center;
+      justify-content: center;
       height: 100vh;
-    }
-
-    .container {
-      background-color: white;
-      padding: 30px 40px;
-      border-radius: 16px;
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
-      text-align: center;
-      max-width: 400px;
-      width: 100%;
+      margin: 0;
     }
 
     h1 {
+      color: #111827;
       margin-bottom: 20px;
-      font-size: 24px;
-      color: #2d3436;
-    }
-
-    input[type="number"] {
-      width: 100%;
-      padding: 12px;
-      margin: 10px 0;
-      font-size: 16px;
-      border: 1px solid #ccc;
-      border-radius: 8px;
-      outline: none;
-      transition: border-color 0.3s;
-    }
-
-    input[type="number"]:focus {
-      border-color: #0984e3;
     }
 
     button {
-      padding: 12px 20px;
-      background-color: #0984e3;
+      padding: 12px 24px;
+      font-size: 16px;
       color: white;
+      background-color: #2563eb;
       border: none;
       border-radius: 8px;
       cursor: pointer;
-      font-size: 16px;
-      transition: background-color 0.3s;
+      transition: background-color 0.3s ease;
     }
 
     button:hover {
-      background-color: #74b9ff;
-    }
-
-    .output {
-      margin-top: 20px;
-      font-size: 18px;
-      color: #2d3436;
+      background-color: #1d4ed8;
     }
   </style>
 </head>
 <body>
-
-  <div class="container">
-    <h1>Count Trailing Zeros in Factorial</h1>
-    <input type="number" id="numberInput" placeholder="Enter a non-negative integer" min="0" />
-    <button onclick="handleTrailingZeros()">Calculate</button>
-    <div class="output" id="result"></div>
-  </div>
+  <h1>Trailing Zeros in Factorial</h1>
+  <button onclick="handleClick()">Check Trailing Zeros</button>
 
   <script>
     function trailingZeros(n) {
       let count = 0;
-      while (n >= 5) {
-        n = Math.floor(n / 5);
-        count += n;
+      for (let i = 5; n / i >= 1; i *= 5) {
+        count += Math.floor(n / i);
       }
       return count;
     }
 
-    function handleTrailingZeros() {
-      const input = document.getElementById("numberInput").value;
-      const num = parseInt(input, 10);
-
-      const resultDiv = document.getElementById("result");
-
-      if (isNaN(num) || num < 0) {
-        resultDiv.textContent = "Please enter a valid non-negative integer.";
-        resultDiv.style.color = "#d63031";
-        return;
-      }
-
-      const result = trailingZeros(num);
-      resultDiv.textContent = `Number of trailing zeros in ${num}! is ${result}`;
-      resultDiv.style.color = "#2d3436";
-    }
-  </script>
-
-</body>
-</html>
+    function handleClick() {
+      const input = parseInt(prompt("Enter a non-negative integer:"), 10);
