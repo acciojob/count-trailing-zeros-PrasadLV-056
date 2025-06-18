@@ -1,16 +1,58 @@
 <!DOCTYPE html>
-
-<html>
-
+<html lang="en">
 <head>
-	<link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8">
+  <title>Trailing Zeros in Factorial</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 40px;
+      background-color: #f9f9f9;
+      text-align: center;
+    }
+    input, button {
+      padding: 10px;
+      margin: 10px;
+      font-size: 16px;
+    }
+    .output {
+      margin-top: 20px;
+      font-weight: bold;
+    }
+  </style>
 </head>
-
 <body>
-	<!-- the entire body must be written by student -->
-    <script type="text/javascript" src="./script.js">
-</script>
+
+  <h1>Count Trailing Zeros in Factorial</h1>
+
+  <input type="number" id="numberInput" placeholder="Enter a non-negative integer" min="0" />
+  <button onclick="handleTrailingZeros()">Calculate</button>
+
+  <div class="output" id="result"></div>
+
+  <script>
+    function trailingZeros(n) {
+      let count = 0;
+      while (n >= 5) {
+        n = Math.floor(n / 5);
+        count += n;
+      }
+      return count;
+    }
+
+    function handleTrailingZeros() {
+      const input = document.getElementById("numberInput").value;
+      const num = parseInt(input, 10);
+
+      if (isNaN(num) || num < 0) {
+        document.getElementById("result").textContent = "Please enter a valid non-negative integer.";
+        return;
+      }
+
+      const result = trailingZeros(num);
+      document.getElementById("result").textContent = `Number of trailing zeros in ${num}! is ${result}`;
+    }
+  </script>
 
 </body>
-
 </html>
